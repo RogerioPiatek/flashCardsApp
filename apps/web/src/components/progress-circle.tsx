@@ -16,7 +16,7 @@ const ProgressCircle = ({ progress }: ProgressCircleProps) => {
 
       <circle
         className="text-mirage-500  progress-ring__circle stroke-current"
-        strokeWidth="10"
+        strokeWidth="12"
         strokeLinecap="round"
         cx="50"
         cy="50"
