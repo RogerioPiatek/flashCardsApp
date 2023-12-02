@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Progress, ProgressBar, ProgressIndicator } from "@repo/ui";
 
 const flashCardsTotal = 12;
 
@@ -17,21 +18,10 @@ const Flash = () => {
             Fundamentos do Javascript
           </span>
 
-          <div className="flex items-center gap-3">
-            <div className="h-3 flex-1 bg-marine-800 rounded-md">
-              <div
-                className="h-3 rounded-md bg-marine-300 transition-all"
-                style={{
-                  width: `${Math.round(
-                    (flashCardsCount * 100) / flashCardsTotal
-                  )}%`,
-                }}
-              />
-            </div>
-            <span className="text-sm font-mono font-bold">
-              {String(flashCardsCount).padStart(2, "0")}/{flashCardsTotal}
-            </span>
-          </div>
+          <Progress max={flashCardsTotal} now={flashCardsCount}>
+            <ProgressBar />
+            <ProgressIndicator />
+          </Progress>
         </div>
 
         <div className="relative mt-20 w-full max-w-[420px] min-h-[416px] ">
@@ -80,7 +70,10 @@ const Flash = () => {
       </div>
 
       <button
-        onClick={() => setShouldShowAnswer(true)}
+        onClick={() => {
+          setShouldShowAnswer(true);
+          setFlashCardsCount((state) => state + 1);
+        }}
         className="bg-mirage-50 text-marine-500 py-8 w-full font-bold uppercase hover:bg-mirage-50/90 md:w-[320px] md:mb-16 md:rounded-full md:py-6"
       >
         Revelar resposta
